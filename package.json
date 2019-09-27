@@ -1,0 +1,51 @@
+{
+  "name": "pkl",
+  "version": "1.0.0",
+  "description": "A package linker for lerna monorepos - use it to install packages from your monorepo into your application",
+  "main": "index.js",
+  "bin": {
+    "pkl": "./index.js"
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "lint.markdown": "prettier --check \"**/*.md\" --prose-wrap \"always\"",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alistairjcbrown/pkl.git"
+  },
+  "keywords": [
+    "pkl",
+    "lerna",
+    "npm",
+    "yarn",
+    "monorepo",
+    "monorepos",
+    "package",
+    "modules",
+    "install",
+    "dependency",
+    "link",
+    "cli",
+    "tool",
+    "utility",
+    "command-line",
+    "development"
+  ],
+  "author": "Alistair Brown <npm@alistairjcbrown.com> (http://alistairjcbrown.com)",
+  "license": "MIT",
+  "dependencies": {
+    "commander": "^3.0.1",
+    "ora": "^4.0.1"
+  },
+  "devDependencies": {
+    "eslint": "^6.1.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-config-prettier": "^6.3.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-prettier": "^3.1.1",
+    "jest": "^24.9.0",
+    "prettier": "^1.18.2"
+  }
+}

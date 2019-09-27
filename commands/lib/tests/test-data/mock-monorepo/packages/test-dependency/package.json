@@ -1,0 +1,8 @@
+{
+  "name": "mock-dependency",
+  "version": "1.0.0",
+  "private": true,
+  "description": "",
+  "main": "index.js",
+  "license": "MIT"
+}

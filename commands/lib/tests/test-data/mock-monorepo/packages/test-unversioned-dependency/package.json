@@ -1,0 +1,7 @@
+{
+  "name": "mock-unversioned-dependency",
+  "private": true,
+  "description": "",
+  "main": "index.js",
+  "license": "MIT"
+}
