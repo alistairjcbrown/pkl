@@ -5,7 +5,7 @@ jest.mock("../utils", () => {
   return {
     getLastLine,
     writeFile: jest.fn(),
-    moveFile: jest.fn()
+    moveFile: jest.fn(),
   };
 });
 
@@ -17,13 +17,13 @@ const pack = require("../pack");
 const npmCommand = [
   "lerna exec --scope mock-dependency -- npm pack",
   { cwd: "/my/monorepo/path/" },
-  expect.any(Function)
+  expect.any(Function),
 ];
 
 const yarnCommand = [
   "lerna exec --scope mock-dependency -- yarn pack --json",
   { cwd: "/my/monorepo/path/" },
-  expect.any(Function)
+  expect.any(Function),
 ];
 
 describe("pack", () => {
@@ -50,7 +50,7 @@ describe("pack", () => {
             stderr: `
               lerna info Executing command in 1 package: "npm pack"
               lerna success exec Executed command in 1 package: "npm pack"
-            `
+            `,
           });
         });
         value = await pack("/my/monorepo/path/", mockDependencyPath, {});
@@ -71,7 +71,7 @@ describe("pack", () => {
             `,
           stdout: `
               test-dependency.tgz
-            `
+            `,
         });
       });
 
@@ -89,7 +89,7 @@ describe("pack", () => {
             stderr: `
               lerna info Executing command in 1 package: "npm pack"
               lerna ERR! npm pack exited 127 in 'test-dependency'
-            `
+            `,
           });
         });
         value = await pack("/my/monorepo/path/", mockDependencyPath, {});
@@ -108,7 +108,7 @@ describe("pack", () => {
               lerna info Executing command in 1 package: "npm pack"
               lerna ERR! npm pack exited 127 in 'test-dependency'
             `,
-          stdout: ""
+          stdout: "",
         });
       });
 
@@ -130,11 +130,11 @@ describe("pack", () => {
             stderr: `
               lerna info Executing command in 1 package: "yarn pack --json"
               lerna success exec Executed command in 1 package: "yarn pack --json"
-            `
+            `,
           });
         });
         value = await pack("/my/monorepo/path/", mockDependencyPath, {
-          yarn: true
+          yarn: true,
         });
       });
 
@@ -153,7 +153,7 @@ describe("pack", () => {
             `,
           stdout: `
               {"type":"success","data":"Wrote tarball to \\"test-dependency.tgz\\"."}
-            `
+            `,
         });
       });
 
@@ -171,11 +171,11 @@ describe("pack", () => {
             stderr: `
               lerna info Executing command in 1 package: "yarn pack --json"
               lerna ERR! yarn pack --json exited 127 in 'test-dependency'
-            `
+            `,
           });
         });
         value = await pack("/my/monorepo/path/", mockDependencyPath, {
-          yarn: true
+          yarn: true,
         });
       });
 
@@ -192,7 +192,7 @@ describe("pack", () => {
               lerna info Executing command in 1 package: "yarn pack --json"
               lerna ERR! yarn pack --json exited 127 in 'test-dependency'
             `,
-          stdout: ""
+          stdout: "",
         });
       });
 
@@ -223,7 +223,7 @@ describe("pack", () => {
             stderr: `
               lerna info Executing command in 1 package: "npm pack"
               lerna success exec Executed command in 1 package: "npm pack"
-            `
+            `,
           });
         });
         value = await pack(
@@ -252,7 +252,7 @@ describe("pack", () => {
             `,
           stdout: `
               test-dependency.tgz
-            `
+            `,
         });
       });
 
@@ -284,7 +284,7 @@ describe("pack", () => {
           main: "index.js",
           name: "mock-unversioned-dependency",
           private: true,
-          version: "0.0.0"
+          version: "0.0.0",
         });
       });
     });
@@ -297,7 +297,7 @@ describe("pack", () => {
             stderr: `
               lerna info Executing command in 1 package: "npm pack"
               lerna ERR! npm pack exited 127 in 'test-dependency'
-            `
+            `,
           });
         });
         value = await pack(
@@ -324,7 +324,7 @@ describe("pack", () => {
               lerna info Executing command in 1 package: "npm pack"
               lerna ERR! npm pack exited 127 in 'test-dependency'
             `,
-          stdout: ""
+          stdout: "",
         });
       });
 
@@ -356,7 +356,7 @@ describe("pack", () => {
           main: "index.js",
           name: "mock-unversioned-dependency",
           private: true,
-          version: "0.0.0"
+          version: "0.0.0",
         });
       });
     });

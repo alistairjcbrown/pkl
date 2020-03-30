@@ -8,14 +8,14 @@ program.version(packageJson.version);
 
 program
   .command("add <monorepo-name>", "Add a named monorepo", {
-    executableFile: "./commands/add.js"
+    executableFile: "./commands/add.js",
   })
   .command("rm <monorepo-name>", "Remove a named monorepo", {
-    executableFile: "./commands/rm.js"
+    executableFile: "./commands/rm.js",
   })
   .alias("remove")
   .command("ls", "List added monorepos and their locations", {
-    executableFile: "./commands/ls.js"
+    executableFile: "./commands/ls.js",
   })
   .alias("list")
   .command(
@@ -24,10 +24,10 @@ program
     { executableFile: "./commands/install.js" }
   );
 
-const parsedCommand = program.parse(process.argv);
-if (parsedCommand) {
+program.on("command:*", (operands) => {
   outputError(
-    `Invalid command "${program.args.join(" ")}"`,
+    `Invalid command "${operands.join(" ")}"`,
     "See --help for a list of available commands."
   );
-}
+});
+program.parse(process.argv);

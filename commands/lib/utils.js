@@ -23,7 +23,7 @@ async function moveFile(oldPath, newPath) {
 
 function outputError(message, ...context) {
   console.error("error: %s", message);
-  [].concat(context).forEach(additionalMessage => {
+  [].concat(context).forEach((additionalMessage) => {
     console.error(additionalMessage);
   });
   process.exit(1);
@@ -31,7 +31,7 @@ function outputError(message, ...context) {
 
 function outputSuccess(message, ...context) {
   console.log("success: %s", message);
-  [].concat(context).forEach(additionalMessage => {
+  [].concat(context).forEach((additionalMessage) => {
     console.log(additionalMessage);
   });
   process.exit();
@@ -51,9 +51,9 @@ function getMonorepoMapping() {
   }
 }
 
-const splitOutput = value => value.trim().split("\n");
+const splitOutput = (value) => value.trim().split("\n");
 
-const getLastLine = value => splitOutput(value).slice(-1)[0];
+const getLastLine = (value) => splitOutput(value).slice(-1)[0];
 
 module.exports = {
   mkdir,
@@ -65,5 +65,5 @@ module.exports = {
   getMappingPath,
   getMonorepoMapping,
   splitOutput,
-  getLastLine
+  getLastLine,
 };

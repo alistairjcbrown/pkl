@@ -6,19 +6,19 @@ const {
   npmListWithLerna,
   npmListWithoutLerna,
   yarnListWithLerna,
-  yarnListWithoutLerna
+  yarnListWithoutLerna,
 } = require("./test-data/command-output");
 
 const npmCommand = [
   "npm ls lerna --json",
   { cwd: "/my/monorepo/path/" },
-  expect.any(Function)
+  expect.any(Function),
 ];
 
 const yarnCommand = [
   "yarn list --depth=0 --pattern=lerna --json",
   { cwd: "/my/monorepo/path/" },
-  expect.any(Function)
+  expect.any(Function),
 ];
 
 describe("get-lerna", () => {
@@ -35,7 +35,7 @@ describe("get-lerna", () => {
         exec.mockImplementation((command, options, callback) => {
           callback(null, {
             stdout: npmListWithLerna,
-            stderr: ""
+            stderr: "",
           });
         });
         value = await getLerna("/my/monorepo/path/", {});
@@ -56,7 +56,7 @@ describe("get-lerna", () => {
         exec.mockImplementation((command, options, callback) => {
           callback(null, {
             stdout: npmListWithoutLerna,
-            stderr: ""
+            stderr: "",
           });
         });
         value = await getLerna("/my/monorepo/path/", {});
@@ -79,7 +79,7 @@ describe("get-lerna", () => {
         exec.mockImplementation((command, options, callback) => {
           callback(null, {
             stdout: yarnListWithLerna,
-            stderr: ""
+            stderr: "",
           });
         });
         value = await getLerna("/my/monorepo/path/", { yarn: true });
@@ -100,7 +100,7 @@ describe("get-lerna", () => {
         exec.mockImplementation((command, options, callback) => {
           callback(null, {
             stdout: yarnListWithoutLerna,
-            stderr: ""
+            stderr: "",
           });
         });
         value = await getLerna("/my/monorepo/path/", { yarn: true });

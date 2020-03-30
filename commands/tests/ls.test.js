@@ -23,7 +23,7 @@ describe("ls", () => {
   describe("when monorepo mapping has a single monorepo", () => {
     beforeEach(() => {
       getMonorepoMapping.mockReturnValue({
-        foo: "/my/monorepo/path"
+        foo: "/my/monorepo/path",
       });
       jest.isolateModules(() => require("../ls"));
     });
@@ -41,7 +41,7 @@ describe("ls", () => {
     beforeEach(() => {
       getMonorepoMapping.mockReturnValue({
         foo: "/my/monorepo/path",
-        bar: "/my/other/monorepo/path"
+        bar: "/my/other/monorepo/path",
       });
       jest.isolateModules(() => require("../ls"));
     });

@@ -3,10 +3,10 @@ const util = require("util");
 const exec = util.promisify(require("child_process").exec);
 const getLerna = require("./get-lerna");
 
-async function getPackagge(monorepoPath, dependency, options) {
+async function getPackage(monorepoPath, dependency, options) {
   const lernaBin = await getLerna(monorepoPath, options);
   const { stdout } = await exec(`${lernaBin} ls --json`, {
-    cwd: monorepoPath
+    cwd: monorepoPath,
   });
 
   let packages = [];
@@ -38,8 +38,8 @@ async function getPackagge(monorepoPath, dependency, options) {
   return {
     err: null,
     path: packageLocation,
-    packageJson: dependencyPackageJson
+    packageJson: dependencyPackageJson,
   };
 }
 
-module.exports = getPackagge;
+module.exports = getPackage;

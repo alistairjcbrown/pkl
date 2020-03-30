@@ -12,7 +12,7 @@ const {
   outputError,
   outputSuccess,
   mkdir,
-  moveFile
+  moveFile,
 } = require("./lib/utils");
 
 (async function install() {
@@ -53,7 +53,7 @@ Multiple packages can be listed to install more than one in a single command.
     const {
       err: packageErr,
       path: depedencyPath,
-      packageJson: dependencyPackageJson
+      packageJson: dependencyPackageJson,
     } = await getPackage(monorepoPath, dependency, { yarn: program.yarn });
 
     if (packageErr) {
@@ -67,9 +67,9 @@ Multiple packages can be listed to install more than one in a single command.
     const {
       isError: isPackError,
       stderr: packErr,
-      file: packedFileName
+      file: packedFileName,
     } = await packDependency(monorepoPath, depedencyPath, {
-      yarn: program.yarn
+      yarn: program.yarn,
     });
 
     if (isPackError) {
@@ -87,7 +87,7 @@ Multiple packages can be listed to install more than one in a single command.
     progress.text = `${dependency} - installing...`;
     const {
       isError: isInstallError,
-      stderr: installErr
+      stderr: installErr,
     } = await installDependency(projectPath, packStash, { yarn: program.yarn });
 
     if (isInstallError) {
@@ -100,7 +100,7 @@ Multiple packages can be listed to install more than one in a single command.
 
   return outputSuccess(
     "installation complete",
-    ...dependencies.map(dependency => {
+    ...dependencies.map((dependency) => {
       const { name, version } = dependencyPackages[dependency];
       return ` - ${dependency} (${monorepo}) → ${name}@${version || "0.0.0"}`;
     })

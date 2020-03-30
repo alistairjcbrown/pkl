@@ -15,7 +15,7 @@ const {
   getMappingPath,
   getMonorepoMapping,
   splitOutput,
-  getLastLine
+  getLastLine,
 } = require("../utils");
 
 describe("utils", () => {

@@ -4,15 +4,12 @@ const program = require("commander");
 const { getMonorepoMapping, outputSuccess } = require("./lib/utils");
 
 (async function ls() {
-  program
-    .name("pkl-ls")
-    .usage("[options]")
-    .description(
-      `
+  program.name("pkl-ls").usage("[options]").description(
+    `
 Lists all the added monorepo names and locations, which can be used when using
 the \`install\` command.
 `.trim()
-    );
+  );
 
   program.parse(process.argv);
   const monorepoMapping = getMonorepoMapping();
@@ -22,7 +19,7 @@ the \`install\` command.
   }
 
   const monorepoList = Object.keys(monorepoMapping).map(
-    monorepo => ` - ${monorepo} → ${monorepoMapping[monorepo]}`
+    (monorepo) => ` - ${monorepo} → ${monorepoMapping[monorepo]}`
   );
 
   const count = monorepoList.length;

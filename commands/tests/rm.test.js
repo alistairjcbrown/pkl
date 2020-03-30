@@ -5,7 +5,7 @@ const {
   getMappingPath,
   getMonorepoMapping,
   outputSuccess,
-  writeFile
+  writeFile,
 } = require("../lib/utils");
 
 describe("rm", () => {
@@ -60,7 +60,7 @@ describe("rm", () => {
       beforeEach(() => {
         getMonorepoMapping.mockReturnValue({
           foo: "/my/monorepo/path/",
-          bar: "/my/other/monorepo/path/"
+          bar: "/my/other/monorepo/path/",
         });
         jest.isolateModules(() => require("../rm"));
       });
@@ -81,7 +81,7 @@ describe("rm", () => {
       beforeEach(() => {
         getMonorepoMapping.mockReturnValue({
           foo: "/my/monorepo/path/",
-          "test-monorepo": "/my/other/monorepo/path/"
+          "test-monorepo": "/my/other/monorepo/path/",
         });
         jest.isolateModules(() => require("../rm"));
       });
@@ -89,7 +89,7 @@ describe("rm", () => {
       it("should update mapping file", () => {
         expect(writeFile).toHaveBeenCalledTimes(1);
         expect(writeFile).toHaveBeenCalledWith("path/to/mapping.json", {
-          foo: "/my/monorepo/path/"
+          foo: "/my/monorepo/path/",
         });
       });
 

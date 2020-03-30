@@ -5,19 +5,16 @@ const {
   writeFile,
   getMappingPath,
   getMonorepoMapping,
-  outputSuccess
+  outputSuccess,
 } = require("./lib/utils");
 
 (async function rm() {
-  program
-    .name("pkl-rm")
-    .usage("<monorepo-name> [options]")
-    .description(
-      `
+  program.name("pkl-rm").usage("<monorepo-name> [options]").description(
+    `
 Removes a monorepo by name, so it no longer shows in the monorepo list
 (\`ls\`) and cannot be used when running \`install\`.
 `.trim()
-    );
+  );
 
   program.parse(process.argv);
   const [monorepo] = program.args;
