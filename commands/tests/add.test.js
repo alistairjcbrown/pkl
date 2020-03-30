@@ -6,7 +6,7 @@ const {
   getCommandCache,
   getMonorepoMapping,
   outputSuccess,
-  writeFile
+  writeFile,
 } = require("../lib/utils");
 
 describe("add", () => {
@@ -50,7 +50,7 @@ describe("add", () => {
       it("should update mapping file", () => {
         expect(writeFile).toHaveBeenCalledTimes(1);
         expect(writeFile).toHaveBeenCalledWith("path/to/mapping.json", {
-          "test-monorepo": "/my/monorepo/path"
+          "test-monorepo": "/my/monorepo/path",
         });
       });
 
@@ -67,7 +67,7 @@ describe("add", () => {
       beforeEach(() => {
         getMonorepoMapping.mockReturnValue({
           foo: "/my/monorepo/path",
-          bar: "/my/other/monorepo/path"
+          bar: "/my/other/monorepo/path",
         });
         jest.isolateModules(() => require("../add"));
       });
@@ -77,7 +77,7 @@ describe("add", () => {
         expect(writeFile).toHaveBeenCalledWith("path/to/mapping.json", {
           foo: "/my/monorepo/path",
           bar: "/my/other/monorepo/path",
-          "test-monorepo": "/my/monorepo/path"
+          "test-monorepo": "/my/monorepo/path",
         });
       });
 
@@ -94,7 +94,7 @@ describe("add", () => {
       beforeEach(() => {
         getMonorepoMapping.mockReturnValue({
           foo: "/my/monorepo/path",
-          "test-monorepo": "/my/other/monorepo/path"
+          "test-monorepo": "/my/other/monorepo/path",
         });
         jest.isolateModules(() => require("../add"));
       });
@@ -103,7 +103,7 @@ describe("add", () => {
         expect(writeFile).toHaveBeenCalledTimes(1);
         expect(writeFile).toHaveBeenCalledWith("path/to/mapping.json", {
           foo: "/my/monorepo/path",
-          "test-monorepo": "/my/monorepo/path"
+          "test-monorepo": "/my/monorepo/path",
         });
       });
 
@@ -124,10 +124,10 @@ describe("add", () => {
         "node",
         ".pkl/commands/add.js",
         "test-monorepo",
-        "./monorepo-directory"
+        "./monorepo-directory",
       ];
       getMonorepoMapping.mockReturnValue({
-        foo: "/my/monorepo/path"
+        foo: "/my/monorepo/path",
       });
       jest.isolateModules(() => require("../add"));
     });
@@ -137,7 +137,7 @@ describe("add", () => {
       expect(writeFile.mock.calls[0][0]).toBe("path/to/mapping.json");
       expect(Object.keys(writeFile.mock.calls[0][1])).toStrictEqual([
         "foo",
-        "test-monorepo"
+        "test-monorepo",
       ]);
       expect(writeFile.mock.calls[0][1].foo).toBe("/my/monorepo/path");
       expect(writeFile.mock.calls[0][1]["test-monorepo"]).toStrictEqual(

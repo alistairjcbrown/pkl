@@ -5,7 +5,7 @@ const { getLastLine } = require("./utils");
 
 async function checkLocalWithYarn(monorepoPath) {
   const { stdout } = await exec("yarn list --depth=0 --pattern=lerna --json", {
-    cwd: monorepoPath
+    cwd: monorepoPath,
   });
 
   const matches = JSON.parse(getLastLine(stdout));
@@ -14,7 +14,7 @@ async function checkLocalWithYarn(monorepoPath) {
 
 async function checkLocalWithNpm(monorepoPath) {
   const { stdout } = await exec("npm ls lerna --json", {
-    cwd: monorepoPath
+    cwd: monorepoPath,
   });
 
   const localLerna = JSON.parse(stdout);
@@ -29,6 +29,7 @@ async function getLerna(monorepoPath, options) {
   const isLocal = options.yarn
     ? await checkLocalWithYarn(monorepoPath)
     : await checkLocalWithNpm(monorepoPath);
+
   if (isLocal) {
     return path.join("node_modules", ".bin", "lerna");
   }

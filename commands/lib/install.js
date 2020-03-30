@@ -7,18 +7,18 @@ async function installWthYarn(projectPath, installPath) {
   const { stderr, stdout } = await exec(
     `yarn add file:${path.relative(projectPath, installPath)}`,
     {
-      cwd: projectPath
+      cwd: projectPath,
     }
   );
 
   const errors = splitOutput(stderr).filter(
-    line => !line.trim().startsWith("warning ")
+    (line) => !line.trim().startsWith("warning ")
   );
 
   return {
     isError: errors.length > 0,
     stdout,
-    stderr
+    stderr,
   };
 }
 
@@ -26,18 +26,18 @@ async function installWithNpm(projectPath, installPath) {
   const { stderr, stdout } = await exec(
     `npm install ${path.relative(projectPath, installPath)}`,
     {
-      cwd: projectPath
+      cwd: projectPath,
     }
   );
 
   const errors = splitOutput(stderr).filter(
-    line => !line.trim().startsWith("npm WARN")
+    (line) => !line.trim().startsWith("npm WARN")
   );
 
   return {
     isError: errors.length > 0,
     stdout,
-    stderr
+    stderr,
   };
 }
 

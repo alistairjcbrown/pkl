@@ -6,13 +6,13 @@ const { exec } = require("child_process");
 const getPackage = require("../get-package");
 const {
   lernaListWithDependency,
-  lernaListWithoutDependency
+  lernaListWithoutDependency,
 } = require("./test-data/command-output");
 
 const lernaCommand = [
   "lerna ls --json",
   { cwd: "/my/monorepo/path/" },
-  expect.any(Function)
+  expect.any(Function),
 ];
 
 describe("get-packaage", () => {
@@ -29,7 +29,7 @@ describe("get-packaage", () => {
         callback(null, {
           stdout: "",
           stderr:
-            "lerna ERR! ENOLERNA `lerna.json` does not exist, have you run `lerna init`?"
+            "lerna ERR! ENOLERNA `lerna.json` does not exist, have you run `lerna init`?",
         });
       });
       value = await getPackage("/my/monorepo/path/", "test-dependency", {});
@@ -42,7 +42,7 @@ describe("get-packaage", () => {
 
     it("should return object with error", () => {
       expect(value).toStrictEqual({
-        err: "unable to list packages at /my/monorepo/path/"
+        err: "unable to list packages at /my/monorepo/path/",
       });
     });
   });
@@ -52,7 +52,7 @@ describe("get-packaage", () => {
       exec.mockImplementation((command, options, callback) => {
         callback(null, {
           stdout: lernaListWithDependency,
-          stderr: ""
+          stderr: "",
         });
       });
       value = await getPackage("/my/monorepo/path/", "test-dependency", {});
@@ -77,7 +77,7 @@ describe("get-packaage", () => {
         main: "index.js",
         name: "mock-dependency",
         private: true,
-        version: "1.0.0"
+        version: "1.0.0",
       });
     });
   });
@@ -89,7 +89,7 @@ describe("get-packaage", () => {
       exec.mockImplementation((command, options, callback) => {
         callback(null, {
           stdout: lernaListWithoutDependency,
-          stderr: ""
+          stderr: "",
         });
       });
       mockMonorepoPath = path.resolve(__dirname, "./test-data/mock-monorepo");
@@ -119,7 +119,7 @@ describe("get-packaage", () => {
         main: "index.js",
         name: "mock-dependency",
         private: true,
-        version: "1.0.0"
+        version: "1.0.0",
       });
     });
   });
@@ -129,7 +129,7 @@ describe("get-packaage", () => {
       exec.mockImplementation((command, options, callback) => {
         callback(null, {
           stdout: lernaListWithoutDependency,
-          stderr: ""
+          stderr: "",
         });
       });
       value = await getPackage("/my/monorepo/path/", "test-dependency", {});
@@ -142,7 +142,7 @@ describe("get-packaage", () => {
 
     it("should return object with error", () => {
       expect(value).toStrictEqual({
-        err: "unable to get package.json for test-dependency"
+        err: "unable to get package.json for test-dependency",
       });
     });
   });

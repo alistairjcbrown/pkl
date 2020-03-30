@@ -36,16 +36,16 @@
   "author": "Alistair Brown <npm@alistairjcbrown.com> (http://alistairjcbrown.com)",
   "license": "MIT",
   "dependencies": {
-    "commander": "^3.0.1",
-    "ora": "^4.0.1"
+    "commander": "^5.0.0",
+    "ora": "^4.0.3"
   },
   "devDependencies": {
-    "eslint": "^6.1.0",
-    "eslint-config-airbnb-base": "^14.0.0",
-    "eslint-config-prettier": "^6.3.0",
-    "eslint-plugin-import": "^2.18.2",
-    "eslint-plugin-prettier": "^3.1.1",
-    "jest": "^24.9.0",
-    "prettier": "^1.18.2"
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-config-prettier": "^6.10.1",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-prettier": "^3.1.2",
+    "jest": "^25.2.4",
+    "prettier": "^2.0.2"
   }
 }

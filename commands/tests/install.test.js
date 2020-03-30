@@ -6,7 +6,7 @@ jest.mock("ora", () => {
   const progress = {
     start: () => progress,
     fail: () => progress,
-    succeed: () => progress
+    succeed: () => progress,
   };
   return () => progress;
 });
@@ -21,10 +21,10 @@ const {
   outputError,
   outputSuccess,
   mkdir,
-  moveFile
+  moveFile,
 } = require("../lib/utils");
 
-const defer = callback => done =>
+const defer = (callback) => (done) =>
   setTimeout(() => {
     callback();
     done();
@@ -37,8 +37,8 @@ const mockDependencyPackage = (options = { unversioned: false }) => ({
   }dependency`,
   packageJson: {
     name: `mock-${options.unversioned ? "unversioned-" : ""}dependency`,
-    version: options.unversioned ? undefined : "1.0.0"
-  }
+    version: options.unversioned ? undefined : "1.0.0",
+  },
 });
 
 describe("install", () => {
@@ -49,11 +49,11 @@ describe("install", () => {
       "node",
       ".pkl/commands/install.js",
       "test-monorepo",
-      "test-dependency"
+      "test-dependency",
     ];
 
     getMonorepoMapping.mockReturnValue({
-      "test-monorepo": "/my/monorepo/path/"
+      "test-monorepo": "/my/monorepo/path/",
     });
 
     getPackage.mockReturnValue(mockDependencyPackage());
@@ -62,7 +62,7 @@ describe("install", () => {
       isError: false,
       file: "test-dependency.tgz",
       stderr: 'lerna success exec Executed command in 1 package: "npm pack"',
-      stdout: "test-dependency.tgz"
+      stdout: "test-dependency.tgz",
     });
   });
 
@@ -119,7 +119,7 @@ describe("install", () => {
   describe("when dependency package.json cannot be found", () => {
     beforeEach(() => {
       getPackage.mockReturnValue({
-        err: "unable to get package.json for test-dependency"
+        err: "unable to get package.json for test-dependency",
       });
 
       jest.isolateModules(() => require("../install"));
@@ -143,7 +143,7 @@ describe("install", () => {
         isError: true,
         file: "",
         stderr: "lerna ERR! npm pack exited 127 in 'test-dependency'",
-        stdout: ""
+        stdout: "",
       });
 
       jest.isolateModules(() => require("../install"));
@@ -168,7 +168,7 @@ describe("install", () => {
         isError: true,
         stderr:
           'npm ERR! Could not install from ".pkl/mock-dependency.tgz" as it does not contain a package.json file.',
-        stdout: ""
+        stdout: "",
       });
 
       jest.isolateModules(() => require("../install"));
@@ -201,7 +201,7 @@ describe("install", () => {
         isError: false,
         stderr:
           "npm WARN deprecated left-pad@1.3.0: use String.prototype.padStart()",
-        stdout: " + mock-dependency@1.0.0"
+        stdout: " + mock-dependency@1.0.0",
       });
 
       jest.isolateModules(() => require("../install"));
@@ -263,19 +263,20 @@ describe("install", () => {
         isError: false,
         file: "test-dependency.tgz",
         stderr: 'lerna success exec Executed command in 1 package: "npm pack"',
-        stdout: "test-dependency.tgz"
+        stdout: "test-dependency.tgz",
       });
       packDependency.mockReturnValueOnce({
         isError: false,
         file: "test-unversioned-dependency.tgz",
         stderr: 'lerna success exec Executed command in 1 package: "npm pack"',
-        stdout: "test-unversioned-dependency.tgz"
+        stdout: "test-unversioned-dependency.tgz",
       });
 
       installDependency.mockReturnValue({
         isError: false,
         stderr: "",
-        stdout: " + mock-dependency@1.0.0\n + mock-unversioned-dependency@0.0.0"
+        stdout:
+          " + mock-dependency@1.0.0\n + mock-unversioned-dependency@0.0.0",
       });
 
       jest.isolateModules(() => require("../install"));
@@ -349,7 +350,7 @@ describe("install", () => {
         isError: false,
         stderr:
           "npm WARN deprecated left-pad@1.3.0: use String.prototype.padStart()",
-        stdout: " + mock-dependency@1.0.0"
+        stdout: " + mock-dependency@1.0.0",
       });
 
       jest.isolateModules(() => require("../install"));

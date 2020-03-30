@@ -6,13 +6,13 @@ const install = require("../install");
 const npmCommand = [
   "npm install .pkl/mock-dependency.tgz",
   { cwd: "/my/project/path/" },
-  expect.any(Function)
+  expect.any(Function),
 ];
 
 const yarnCommand = [
   "yarn add file:.pkl/mock-dependency.tgz",
   { cwd: "/my/project/path/" },
-  expect.any(Function)
+  expect.any(Function),
 ];
 
 describe("install", () => {
@@ -33,7 +33,7 @@ describe("install", () => {
             `,
             stderr: `
               npm WARN deprecated left-pad@1.3.0: use String.prototype.padStart()
-            `
+            `,
           });
         });
         value = await install(
@@ -56,7 +56,7 @@ describe("install", () => {
             `,
           stdout: `
               + mock-dependency@1.0.0
-            `
+            `,
         });
       });
     });
@@ -68,7 +68,7 @@ describe("install", () => {
             stdout: "",
             stderr: `
               npm ERR! Could not install from ".pkl/mock-dependency.tgz" as it does not contain a package.json file.
-            `
+            `,
           });
         });
         value = await install(
@@ -89,7 +89,7 @@ describe("install", () => {
           stderr: `
               npm ERR! Could not install from ".pkl/mock-dependency.tgz" as it does not contain a package.json file.
             `,
-          stdout: ""
+          stdout: "",
         });
       });
     });
@@ -106,7 +106,7 @@ describe("install", () => {
             `,
             stderr: `
               warning "foor > bar" has unmet peer dependency "baz"
-            `
+            `,
           });
         });
         value = await install(
@@ -130,7 +130,7 @@ describe("install", () => {
           stdout: `
               success Saved lockfile.
               success Saved 1 new dependency.
-            `
+            `,
         });
       });
     });
@@ -142,7 +142,7 @@ describe("install", () => {
             stdout: "",
             stderr: `
               error Package ".pkl/mock-dependency.tgz2" refers to a non-existing file"
-            `
+            `,
           });
         });
         value = await install(
@@ -163,7 +163,7 @@ describe("install", () => {
           stderr: `
               error Package ".pkl/mock-dependency.tgz2" refers to a non-existing file"
             `,
-          stdout: ""
+          stdout: "",
         });
       });
     });

@@ -1,18 +1,18 @@
 const path = require("path");
 
-const stringify = value => JSON.stringify(value, null, 2);
+const stringify = (value) => JSON.stringify(value, null, 2);
 
 const npmListWithLerna = stringify({
   name: "my-monorepo",
   dependencies: {
     lerna: {
-      version: "3.16.0"
-    }
-  }
+      version: "3.16.0",
+    },
+  },
 });
 
 const npmListWithoutLerna = stringify({
-  name: "my-monorepo"
+  name: "my-monorepo",
 });
 
 const yarnListWithLerna = JSON.stringify({
@@ -25,18 +25,18 @@ const yarnListWithLerna = JSON.stringify({
         children: [],
         hint: null,
         color: null,
-        depth: 0
-      }
-    ]
-  }
+        depth: 0,
+      },
+    ],
+  },
 });
 
 const yarnListWithoutLerna = JSON.stringify({
   type: "tree",
   data: {
     type: "list",
-    trees: []
-  }
+    trees: [],
+  },
 });
 
 const lernaListWithDependency = JSON.stringify([
@@ -47,8 +47,8 @@ const lernaListWithDependency = JSON.stringify([
     location: path.resolve(
       __dirname,
       "./mock-monorepo/packages/test-dependency"
-    )
-  }
+    ),
+  },
 ]);
 
 const lernaListWithoutDependency = JSON.stringify([
@@ -59,8 +59,8 @@ const lernaListWithoutDependency = JSON.stringify([
     location: path.resolve(
       __dirname,
       "./mock-monorepo/packages/other-test-dependency"
-    )
-  }
+    ),
+  },
 ]);
 
 module.exports = {
@@ -69,5 +69,5 @@ module.exports = {
   yarnListWithLerna,
   yarnListWithoutLerna,
   lernaListWithDependency,
-  lernaListWithoutDependency
+  lernaListWithoutDependency,
 };

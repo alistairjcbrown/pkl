@@ -5,7 +5,10 @@ const getLerna = require("./get-lerna");
 const { moveFile, writeFile, getLastLine } = require("./utils");
 
 async function packWithYarn(dependencyPackageJson, lernaBin, monorepoPath) {
-  const { stdout, stderr } = await exec(
+  const {
+    stdout,
+    stderr,
+  } = await exec(
     `${lernaBin} exec --scope ${dependencyPackageJson.name} -- yarn pack --json`,
     { cwd: monorepoPath }
   );
@@ -22,12 +25,15 @@ async function packWithYarn(dependencyPackageJson, lernaBin, monorepoPath) {
   return {
     stdout,
     stderr,
-    file: tarPath ? path.basename(tarPath[1]) : ""
+    file: tarPath ? path.basename(tarPath[1]) : "",
   };
 }
 
 async function packWithNpm(dependencyPackageJson, lernaBin, monorepoPath) {
-  const { stdout, stderr } = await exec(
+  const {
+    stdout,
+    stderr,
+  } = await exec(
     `${lernaBin} exec --scope ${dependencyPackageJson.name} -- npm pack`,
     { cwd: monorepoPath }
   );
@@ -35,7 +41,7 @@ async function packWithNpm(dependencyPackageJson, lernaBin, monorepoPath) {
   return {
     stdout,
     stderr,
-    file: getLastLine(stdout)
+    file: getLastLine(stdout),
   };
 }
 
@@ -50,7 +56,7 @@ async function pack(monorepoPath, depedencyPath, options) {
     await moveFile(packageJsonPath, packageBackupPath);
     await writeFile(packageJsonPath, {
       ...dependencyPackageJson,
-      version: "0.0.0"
+      version: "0.0.0",
     });
   }
 
@@ -67,7 +73,7 @@ async function pack(monorepoPath, depedencyPath, options) {
     isError: !getLastLine(stderr).includes("success exec"),
     stdout,
     stderr,
-    file
+    file,
   };
 }
 
